@@ -83,7 +83,7 @@ export default {
   async mounted() {
     this.source = new VectorSource({
         format: new GeoJSON(),
-        url: "https://raw.githubusercontent.com/jacksonks/geojson/master/station_list.geojson",
+        url: "https://raw.githubusercontent.com/JonatasRodriguesReis/stations-files/main/station_list.geojson",
     });
 
     this.vectorGeoJSON = new VectorLayer({
