@@ -1,124 +1,123 @@
 <template>
   <div id="drawer-container">
-    <v-navigation-drawer permanent>
-     <v-list-item>
-        <v-list-item-content>
-           <v-img width="180" src="https://jointecnologia.com.br/wp-content/themes/theme-bones-master/library/images/logo-blue.png"></v-img>
-        </v-list-item-content>
-    </v-list-item>
+    <div>
+      <div>
+        <v-list-item>
+            <v-list-item-content>
+              <v-img width="200" src="https://jointecnologia.com.br/wp-content/themes/theme-bones-master/library/images/logo-blue.png"></v-img>
+            </v-list-item-content>
+        </v-list-item>
+      </div>
 
-    <v-container>
-        <v-form
-            ref="form"
-            lazy-validation
-        >
-            <v-select
-                v-model="selectedTypes"
-                :items="typesStation"
-                item-text="name"
-                return-object
-                label="Tipo de estação"
-                multiple
-                chips
-                clearable
-            >
+      <v-container >
+          <v-form
+              ref="form"
+              lazy-validation
+              class="mx-3"
+          >
+              <v-select
+                  v-model="selectedTypes"
+                  :items="typesStation"
+                  item-text="name"
+                  return-object
+                  label="Tipo de estação"
+                  multiple
+                  chips
+                  clearable
+              >
 
-                <template v-slot:selection="{ item, index }">
-                    <v-chip v-if="index < 2">
-                        <span>{{ item.name }}</span>
-                    </v-chip>
-                    <span
-                        v-if="index === 2"
-                        class="grey--text caption"
-                    >
-                        (+{{ selectedTypes.length - 2 }} tipos)
-                    </span>
-                </template>
-                
-                <template v-slot:prepend-item>
-                    <v-list-item
-                        ripple
-                        @click="toggleTypes"
-                    >
-                    <v-list-item-action>
-                        <v-icon :color="selectedTypes.length > 0 ? 'indigo darken-4' : ''">
-                        {{ iconTypes }}
-                        </v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                        Selecione todos
-                        </v-list-item-title>
-                    </v-list-item-content>
-                    </v-list-item>
-                    <v-divider class="mt-2"></v-divider>
-                </template>
-            </v-select>
+                  <template v-slot:selection="{ item, index }">
+                      <v-chip v-if="index < 2">
+                          <span>{{ item.name }}</span>
+                      </v-chip>
+                      <span
+                          v-if="index === 2"
+                          class="grey--text caption"
+                      >
+                          (+{{ selectedTypes.length - 2 }} tipos)
+                      </span>
+                  </template>
+                  
+                  <template v-slot:prepend-item>
+                      <v-list-item
+                          ripple
+                          @click="toggleTypes"
+                      >
+                      <v-list-item-action>
+                          <v-icon :color="selectedTypes.length > 0 ? 'indigo darken-4' : ''">
+                          {{ iconTypes }}
+                          </v-icon>
+                      </v-list-item-action>
+                      <v-list-item-content>
+                          <v-list-item-title>
+                          Selecione todos
+                          </v-list-item-title>
+                      </v-list-item-content>
+                      </v-list-item>
+                      <v-divider class="mt-2"></v-divider>
+                  </template>
+              </v-select>
 
-            <v-select
-                v-model="selectedStations"
-                :items="stations"
-                label="Estação"
-                item-text="name"
-                return-object
-                multiple
-                chips
-                clearable
-            >
+              <v-select
+                  v-model="selectedStations"
+                  :items="stations"
+                  label="Estação"
+                  item-text="name"
+                  return-object
+                  multiple
+                  chips
+                  clearable
+              >
 
-                <template v-slot:selection="{ item, index }">
-                    <v-chip v-if="index < 3">
-                        <span>{{ item.name }}</span>
-                    </v-chip>
-                    <span
-                        v-if="index === 3"
-                        class="grey--text caption"
-                    >
-                        (+{{ selectedStations.length - 3 }} estações)
-                    </span>
-                </template>
-                
-                <template v-slot:prepend-item>
-                    <v-list-item
-                        ripple
-                        @click="toggleStations"
-                    >
-                    <v-list-item-action>
-                        <v-icon :color="selectedTypes.length > 0 ? 'indigo darken-4' : ''">
-                        {{ iconStations }}
-                        </v-icon>
-                    </v-list-item-action>
-                    <v-list-item-content>
-                        <v-list-item-title>
-                        Selecione todos
-                        </v-list-item-title>
-                    </v-list-item-content>
-                    </v-list-item>
-                    <v-divider class="mt-2"></v-divider>
-                </template>
-            </v-select>
+                  <template v-slot:selection="{ item, index }">
+                      <v-chip v-if="index < 3">
+                          <span>{{ item.name }}</span>
+                      </v-chip>
+                      <span
+                          v-if="index === 3"
+                          class="grey--text caption"
+                      >
+                          (+{{ selectedStations.length - 3 }} estações)
+                      </span>
+                  </template>
+                  
+                  <template v-slot:prepend-item>
+                      <v-list-item
+                          ripple
+                          @click="toggleStations"
+                      >
+                      <v-list-item-action>
+                          <v-icon :color="selectedTypes.length > 0 ? 'indigo darken-4' : ''">
+                          {{ iconStations }}
+                          </v-icon>
+                      </v-list-item-action>
+                      <v-list-item-content>
+                          <v-list-item-title>
+                          Selecione todos
+                          </v-list-item-title>
+                      </v-list-item-content>
+                      </v-list-item>
+                      <v-divider class="mt-2"></v-divider>
+                  </template>
+              </v-select>
 
-            <v-row>
-                <v-btn
-                    color="primary"
-                    class="ma-6"
-                    rounded
-                    style="text-transform:none"
-                    @click="filterStations"
-                >
-                    Consultar
-                </v-btn>
-            </v-row>
-        </v-form>
-    </v-container>
+              <v-row>
+                  <v-btn
+                      class="ma-6 white--text"
+                      rounded
+                      style="text-transform:none; background-color: #17a2b8;"
+                      @click="filterStations"
+                  >
+                      Consultar
+                  </v-btn>
+              </v-row>
+          </v-form>
+      </v-container>
+    </div>
 
-     <!--  <v-list-item>
-        <v-list-item-content>
-           <v-list-item-title text>Join 2021</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item> -->
-
-    </v-navigation-drawer>
+    <div>
+      <strong class="my-3 " style="color:#757575">Join 2021</strong>
+    </div>
   </div>
 </template>
 
@@ -210,7 +209,12 @@
 <style scoped>
     
     #drawer-container{
-        width: 15%;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      width: 20%;
+      align-items: center;
+      justify-content: space-between;
     }
 
     #drawer-container div{

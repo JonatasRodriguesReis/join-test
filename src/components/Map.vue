@@ -191,7 +191,7 @@ export default {
 #map {
   position: absolute;
   height: 100%;
-  width: 85%;
+  width: 80%;
 }
 
 #map-container {
