@@ -104,6 +104,7 @@
                     class="ma-6"
                     rounded
                     style="text-transform:none"
+                    @click="filterStations"
                 >
                     Consultar
                 </v-btn>
@@ -131,6 +132,7 @@
     created(){
         this.$store.dispatch('loadTypesStation');
         this.$store.dispatch('loadStations');
+        this.$store.dispatch('loadRawStations');
     },
 
     watch:{
@@ -197,6 +199,10 @@
           }
         })
       },
+
+      filterStations(){
+        this.$store.dispatch('setStationsSelected', this.selectedStations);
+      }
     },
   }
 </script>

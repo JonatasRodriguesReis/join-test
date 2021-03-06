@@ -1,7 +1,8 @@
 import axios from 'axios';
 const state = {
     typesStation: [],
-    stations: []
+    stations: [],
+    rawStations: []
 };
 
 const mutations = { 
@@ -10,24 +11,30 @@ const mutations = {
     },
     setStations(state, data){
         state.stations = data;
+    },
+    setRawStations(state, data){
+        state.rawStations = data;
     }
 };
 
 const actions = { 
     async loadTypesStation({commit}){
-        axios.get('https://raw.githubusercontent.com/jacksonks/geojson/master/station_type.json')
+        const response = await axios.get('https://raw.githubusercontent.com/JonatasRodriguesReis/stations-files/main/station_type.json')
+        console.log('types:',response.data)
+        commit('setTypesStation',response.data.station_type);
+    },
+    async loadStations({commit}){
+        axios.get('https://raw.githubusercontent.com/JonatasRodriguesReis/stations-files/main/station.json')
         .then(response => {
-            console.log('types:',response.data)
-            commit('setTypesStation',response.data.station_type);
+            commit('setStations',response.data.station);
         }).catch(error => {
             console.error(error);
         });
     },
-    async loadStations({commit}){
-        axios.get('https://raw.githubusercontent.com/jacksonks/geojson/master/station.json')
+    async loadRawStations({commit}){
+        axios.get('https://raw.githubusercontent.com/JonatasRodriguesReis/stations-files/main/station_list.geojson')
         .then(response => {
-            console.log(response.data)
-            commit('setStations',response.data.station);
+            commit('setRawStations',response.data);
         }).catch(error => {
             console.error(error);
         });
@@ -36,7 +43,8 @@ const actions = {
 
 const getters = { 
     getTypesStation: (state) => state.typesStation,
-    getStations: (state) => state.stations  
+    getStations: (state) => state.stations,
+    getRawStations: (state) => state.rawStations  
 }
 
 export default {
