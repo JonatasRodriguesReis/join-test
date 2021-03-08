@@ -10,7 +10,6 @@ const mutations = {
 
 const actions = { 
     async setStationsSelected({commit}, data){
-        console.log('stations selected:',data);
         commit('setStationsSelected',data);
     }
 };

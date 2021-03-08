@@ -20,7 +20,6 @@ const mutations = {
 const actions = { 
     async loadTypesStation({commit}){
         const response = await axios.get('https://raw.githubusercontent.com/JonatasRodriguesReis/stations-files/main/station_type.json')
-        console.log('types:',response.data)
         commit('setTypesStation',response.data.station_type);
     },
     async loadStations({commit}){

@@ -1,8 +1,8 @@
 <template>
 
   <div id="map-container">
-    <div id="map"></div>
-    <v-card width="500" class="station-details">
+    <div id="map" :style="$vuetify.breakpoint.name === 'xs' || $vuetify.breakpoint.name === 'sm' ? 'width:100%;' : 'width:80%;'"></div>
+    <v-card :width="$vuetify.breakpoint.name === 'xs' ? '300' :'500'" class="station-details">
       <v-card-title>
         <v-container>
           <v-row>
@@ -14,42 +14,42 @@
       </v-card-title>
       <v-card-text class="station-details text-start">
         <v-row>
-          <v-col cols="4"> 
+          <v-col cols="12" sm="4"> 
             <strong>Identificador</strong>
             <br/>
             <span id="station-identification"></span> 
           </v-col>
-          <v-col cols="8"> 
+          <v-col cols="12" sm="8"> 
             <strong>Nome</strong>
             <br/>
             <span id="station-name"></span> 
           </v-col>
-          <v-col cols="4"> 
+          <v-col cols="12" sm="4"> 
             <strong>Latitude</strong>
             <br/>
             <span id="station-latitude"></span> 
           </v-col>
-          <v-col cols="4"> 
+          <v-col cols="12" sm="4"> 
             <strong>Longitude</strong>
             <br/>
             <span id="station-longitude"></span> 
           </v-col>
-          <v-col cols="4"> 
+          <v-col cols="12" sm="4"> 
             <strong>Elevação (m2)</strong>
             <br/>
             <span id="station-elevation"></span> 
           </v-col>
-          <v-col cols="4"> 
+          <v-col cols="12" sm="4"> 
             <strong>Início de operação</strong>
             <br/>
             <span id="station-start-operation"></span> 
           </v-col>
-          <v-col cols="4"> 
+          <v-col cols="12" sm="4"> 
             <strong>Fim de operação</strong>
             <br/>
             <span id="station-finish-operation"></span> 
           </v-col>
-          <v-col cols="4"> 
+          <v-col cols="12" sm="4"> 
             <strong>Tipo da Estação</strong>
             <br/>
             <span id="station-type"></span> 
@@ -191,7 +191,7 @@ export default {
 #map {
   position: absolute;
   height: 100%;
-  width: 80%;
+  /* width: 100%; */
 }
 
 #map-container {

@@ -1,16 +1,60 @@
 <template>
-    <Map :stationsSelected="stationsSelected"/>
+    <div>
+        <Map :stationsSelected="stationsSelected"/>
+        <v-dialog
+            v-if="$vuetify.breakpoint.name === 'xs' || $vuetify.breakpoint.name === 'sm'"
+            v-model="dialog"
+            fullscreen
+            hide-overlay
+            transition="dialog-bottom-transition"
+        >
+            <template v-slot:activator="{ on, attrs }">
+                <v-fab-transition>
+                    <v-btn
+                        class="mb-12"
+                        style="background-color: #17a2b8;"
+                        v-bind="attrs"
+                        v-on="on"
+                        dark
+                        absolute
+                        bottom
+                        right
+                        fab
+                    >
+                        <v-icon>fas fa-filter</v-icon>
+                    </v-btn>
+                </v-fab-transition>
+            </template>
+            <v-card>
+                <v-row>
+                    <v-btn
+                        class="mt-3 ml-3"
+                        icon
+                        @click="dialog = false"
+                    >
+                        <v-icon>mdi-close</v-icon>
+                    </v-btn>
+                </v-row>
+
+                <FormFilter @closeDialog="dialog=$value"/>
+
+            </v-card>
+        </v-dialog>
+    </div>
 </template>
 
 <script>
 import Map from '../components/Map';
+import FormFilter from '../components/FormFilter';
 export default {
+    data: () => ({
+        dialog: false
+    }),
     components:{
-        Map
+        Map, FormFilter
     },
     computed:{
         stationsSelected(){
-            console.log('no computed', this.$store.getters.getStationsSelected);
             return this.$store.getters.getStationsSelected;
         }
     }

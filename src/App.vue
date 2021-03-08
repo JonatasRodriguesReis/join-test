@@ -2,7 +2,7 @@
   <v-app>
     <v-main>
       <div id="container-app">
-        <Drawer/>
+        <FormFilter style="width: 20%;" v-if="$vuetify.breakpoint.name != 'xs' && $vuetify.breakpoint.name != 'sm' "/>
         <Dashboard/>
       </div>
     </v-main>
@@ -11,14 +11,14 @@
 
 <script>
 import Dashboard from './views/Dashboard';
-import Drawer from './components/Drawer';
+import FormFilter from './components/FormFilter';
 
 export default {
   name: 'App',
 
   components: {
     Dashboard,
-    Drawer
+    FormFilter
   },
 
   data: () => ({

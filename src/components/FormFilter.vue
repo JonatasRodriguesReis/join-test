@@ -18,6 +18,7 @@
               <v-select
                   v-model="selectedTypes"
                   :items="typesStation"
+                  :rules="typeStationRule"
                   item-text="name"
                   return-object
                   label="Tipo de estação"
@@ -62,6 +63,7 @@
                   v-model="selectedStations"
                   :items="stations"
                   label="Estação"
+                  :rules="stationRule"
                   item-text="name"
                   return-object
                   multiple
@@ -116,7 +118,7 @@
     </div>
 
     <div>
-      <strong class="my-3 " style="color:#757575">Join 2021</strong>
+      <strong class="my-3 d-none d-md-block" style="color:#757575">Join 2021</strong>
     </div>
   </div>
 </template>
@@ -126,6 +128,12 @@
     data: () => ({
         selectedTypes: [],
         selectedStations: [],
+        typeStationRule:[
+          v => !!v || 'Tipo da estação precisa ser selecionado'
+        ],
+        stationRule:[
+          v => !!v || 'Estação precisa ser selecionado'
+        ]
     }),
 
     created(){
@@ -200,7 +208,10 @@
       },
 
       filterStations(){
-        this.$store.dispatch('setStationsSelected', this.selectedStations);
+        if(this.$refs.form.validate()){
+          this.$store.dispatch('setStationsSelected', this.selectedStations);
+          this.$emit('closeDialog', false)
+        }
       }
     },
   }
@@ -212,7 +223,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      width: 20%;
+     /*  width: 20%; */
       align-items: center;
       justify-content: space-between;
     }
