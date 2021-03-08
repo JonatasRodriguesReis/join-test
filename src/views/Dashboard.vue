@@ -12,7 +12,7 @@
                 <v-fab-transition >
                     <v-btn
                         
-                        style="background-color: #17a2b8; margin-bottom: 72px;"
+                        style="background-color: #17a2b8; margin-bottom: 78px;"
                         v-bind="attrs"
                         v-on="on"
                         dark
