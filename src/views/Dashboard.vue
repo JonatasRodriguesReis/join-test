@@ -9,10 +9,10 @@
             transition="dialog-bottom-transition"
         >
             <template v-slot:activator="{ on, attrs }">
-                <v-fab-transition>
+                <v-fab-transition >
                     <v-btn
-                        class="mb-12"
-                        style="background-color: #17a2b8;"
+                        
+                        style="background-color: #17a2b8; margin-bottom: 72px;"
                         v-bind="attrs"
                         v-on="on"
                         dark

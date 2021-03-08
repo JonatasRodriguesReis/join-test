@@ -2,7 +2,7 @@
 
   <div id="map-container">
     <div id="map" :style="$vuetify.breakpoint.name === 'xs' || $vuetify.breakpoint.name === 'sm' ? 'width:100%;' : 'width:80%;'"></div>
-    <v-card :width="$vuetify.breakpoint.name === 'xs' ? '300' :'500'" class="station-details">
+    <v-card :width="$vuetify.breakpoint.name === 'xs' ? '250' :'500'" class="station-details">
       <v-card-title>
         <v-container>
           <v-row>
